@@ -5,28 +5,53 @@
 
 body{
     background-color: aqua;
+    box-sizing: border-box;
 }
 
-
+/* container spanning over the whole page */
 #container { 
     width: 100vw;
     height: 100vh;
     display: flex;
 }
 
+/* Body of the calculator centered in the middle */
 .calcul {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    width: 500px;
-    height: 500px;
+    width: 250px;
+    height: 320px;
+    background-color: #454545;
     margin: auto;
+    border-radius: 10px;
 }
 
-.top
+/* top part including screen */
+.top {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 70px;
+    background-color: #454555;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+/* screen of calculator */
+.screen {
+    width: 185px;
+    height: 60px;
+    background-color: rgb(90, 135, 118);
+    border-radius: 8px;
+}
 
 
+/* bottom half of the calculator */
 .bottom {
+    margin: auto 0 2.5em;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(4,1fr);
@@ -40,4 +65,8 @@ body{
 
 button {
     padding: 7px;
+    border-radius: 10px;
+    color: #fff;
+    border-color: rgb(180, 0, 0);
+    background-color: rgb(180, 0, 0);
 }
