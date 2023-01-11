@@ -15,47 +15,101 @@ body{
     display: flex;
 }
 
+
+
 /* Body of the calculator centered in the middle */
 .calcul {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 250px;
-    height: 320px;
+    width: 230px;
+    height: 350px;
     background-color: #454545;
     margin: auto;
     border-radius: 10px;
 }
 
-/* top part including screen */
+/* whole top part of the calculator*/
 .top {
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 70px;
-    background-color: #454555;
-    margin: auto;
-    justify-content: center;
+}
+
+/* eyes and dot style */
+.eyes-contain{
+    display: flex;
+    justify-content: space-around;
     align-items: center;
+    margin-top: 10px;
+}
+
+#eye1,#eye2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+}
+
+/* move eyes when users clicks on = sign */
+.move-eyes {
+    background-color: blue;
+}
+
+.dot{
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    border: none;
+}
+
+/* nose style */
+.nose-contain{
+    display: flex;
+    justify-content: center;
+}
+
+.nose {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    width: 45px;
+    background-color: rgb(180, 0, 0);
+    border-radius: 50%;
+}
+
+.line-one,.line-two {
+    height: 15px;
+    width: 8px;
+    background-color: #fff;
+    border-radius: 1px;
 }
 
 /* screen of calculator */
+.screen-contain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 60px;
+    background-color: #454555;
+}
+
+
 .screen {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     width: 185px;
-    height: 60px;
+    height: 50px;
     background-color: rgb(90, 135, 118);
     border-radius: 8px;
 }
-
-#para {
-    font-size: 2.1em;
-    flex-grow: 0;
-}
-
 
 /* bottom half of the calculator */
 .bottom {

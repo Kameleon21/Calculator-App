@@ -15,11 +15,22 @@ const zero = document.getElementById('0');
 const addBtn = document.getElementById('add');
 const subtractBtn = document.getElementById('subtract');
 const equal = document.getElementById('equal');
-
+const eye1 = document.getElementById('eye1');
+const eye2 = document.getElementById('eye2');
 
 
 seven.addEventListener('click', () => {
     newNumber();
+})
+
+function changeEyes() {
+    eye1.style.alignItems= 'flex-end';
+    eye2.style.alignItems= 'flex-end';
+}
+
+equal.addEventListener('click', () => {
+    eye1.classList.toggle = ("move-eyes");
+    eye2.classList.toggle = ("move-eyes");
 })
 
 
