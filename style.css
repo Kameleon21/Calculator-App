@@ -46,7 +46,7 @@ body{
 
 #eye1,#eye2 {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: flex-start;
     border-radius: 5px;
     width: 30px;
@@ -55,8 +55,9 @@ body{
 }
 
 /* move eyes when users clicks on = sign */
-.move-eyes {
-    background-color: blue;
+.move {
+    justify-content: center !important;
+    align-items: flex-end !important;
 }
 
 .dot{
@@ -101,7 +102,7 @@ body{
 }
 
 
-.screen {
+#screen {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;

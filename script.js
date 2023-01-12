@@ -1,37 +1,65 @@
-const screen = document.getElementById('para');
-const seven =document.getElementById('7');
-const eight =document.getElementById('8');
-const nine =document.getElementById('9');
+const screen = document.getElementById('screen');
 const clear =document.getElementById('Clear');
-const four =document.getElementById('4');
-const five =document.getElementById('5');
-const six =document.getElementById('6');
 const multiplyBtn =document.getElementById('multiply');
-const one =document.getElementById('1');
-const two =document.getElementById('2');
-const three =document.getElementById('3');
 const divideBtn = document.getElementById('divide');
-const zero = document.getElementById('0');
 const addBtn = document.getElementById('add');
 const subtractBtn = document.getElementById('subtract');
 const equal = document.getElementById('equal');
 const eye1 = document.getElementById('eye1');
 const eye2 = document.getElementById('eye2');
 
+const screenValue = document.getElementById('screen').value;
 
-seven.addEventListener('click', () => {
-    newNumber();
-})
+// display number for each button pressed
+let newNumber = document.createElement('p')
+const allBtn = document.querySelectorAll('button');
+    allBtn.forEach(allBtn => {
+        allBtn.addEventListener('click', (e) => {
+            if(e.target.id === '0') {
+                newNumber.textContent = 0;
+                screen.append(newNumber);
+            } else if(e.target.id === '1') {
+                newNumber.textContent = 1;
+                screen.append(newNumber);
+            } else if(e.target.id === '2') {
+                newNumber.textContent = 2;
+                screen.append(newNumber);
+            } else if(e.target.id === '3') {
+                newNumber.textContent = 3;
+                screen.append(newNumber);
+            } else if(e.target.id === '4') {
+                newNumber.textContent = 4;
+                screen.append(newNumber);
+            } else if(e.target.id === '5') {
+                newNumber.textContent = 5;
+                screen.append(newNumber);
+            } else if(e.target.id === '6') {
+                newNumber.textContent = 6;
+                screen.append(newNumber);
+            } else if(e.target.id === '7') {
+                newNumber.textContent = 7;
+                screen.append(newNumber);
+            } else if(e.target.id == '8') {
+                newNumber.textContent = 8;
+                screen.append(newNumber);
+            } else if(e.target.id === '9') {
+                newNumber.textContent = 9;
+                screen.append(newNumber);
+            } else if (e.target.id === 'Clear') {
+                screen.innerHTML ='';
+                newNumber = undefined;
+            }
+        })
+    })
+
+console.log(newNumber);
 
 function changeEyes() {
-    eye1.style.alignItems= 'flex-end';
-    eye2.style.alignItems= 'flex-end';
+    eye1.classList.toggle('move');
+    eye2.classList.toggle('move');
 }
 
-equal.addEventListener('click', () => {
-    eye1.classList.toggle = ("move-eyes");
-    eye2.classList.toggle = ("move-eyes");
-})
+equal.addEventListener('click', changeEyes)
 
 
 
