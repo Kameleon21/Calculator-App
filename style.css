@@ -96,16 +96,15 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
-    height: 60px;
+    width: 210px;
+    height: 70px;
     background-color: #454555;
 }
 
 
 #screen {
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+    padding: 3px;
     width: 185px;
     height: 50px;
     background-color: rgb(90, 135, 118);

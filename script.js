@@ -8,61 +8,34 @@ const equal = document.getElementById('equal');
 const eye1 = document.getElementById('eye1');
 const eye2 = document.getElementById('eye2');
 
-const screenValue = document.getElementById('screen').value;
-
-// display number for each button pressed
-let newNumber = document.createElement('p')
-const allBtn = document.querySelectorAll('button');
-    allBtn.forEach(allBtn => {
-        allBtn.addEventListener('click', (e) => {
-            if(e.target.id === '0') {
-                newNumber.textContent = 0;
-                screen.append(newNumber);
-            } else if(e.target.id === '1') {
-                newNumber.textContent = 1;
-                screen.append(newNumber);
-            } else if(e.target.id === '2') {
-                newNumber.textContent = 2;
-                screen.append(newNumber);
-            } else if(e.target.id === '3') {
-                newNumber.textContent = 3;
-                screen.append(newNumber);
-            } else if(e.target.id === '4') {
-                newNumber.textContent = 4;
-                screen.append(newNumber);
-            } else if(e.target.id === '5') {
-                newNumber.textContent = 5;
-                screen.append(newNumber);
-            } else if(e.target.id === '6') {
-                newNumber.textContent = 6;
-                screen.append(newNumber);
-            } else if(e.target.id === '7') {
-                newNumber.textContent = 7;
-                screen.append(newNumber);
-            } else if(e.target.id == '8') {
-                newNumber.textContent = 8;
-                screen.append(newNumber);
-            } else if(e.target.id === '9') {
-                newNumber.textContent = 9;
-                screen.append(newNumber);
-            } else if (e.target.id === 'Clear') {
-                screen.innerHTML ='';
-                newNumber = undefined;
-            }
-        })
-    })
-
-console.log(newNumber);
-
-function changeEyes() {
-    eye1.classList.toggle('move');
-    eye2.classList.toggle('move');
+// Change eyes directions
+function changeEyesDown() {
+    eye1.classList.add('move');
+    eye2.classList.add('move');
 }
 
-equal.addEventListener('click', changeEyes)
+function changeEyesUp() {
+    eye1.classList.remove('move');
+    eye2.classList.remove('move');    
+}
 
+// print a number to the screen
+const para = document.getElementById('para');
 
+function printAnswer(value) {
+    para.textContent += value;
+    screen.append(para);
+    let a = para.textContent;
+    let b = Number.parseFloat(a);
+    console.log(b);
+    console.log(typeof b);
+}
+// let a = para.textContent;
 
+// clear function
+clear.addEventListener('click' ,() => {
+    para.innerText = " ";  
+})
 
 // add,multiply,divide and subtract functions
 function add(...args){
