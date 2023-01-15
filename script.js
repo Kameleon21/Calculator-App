@@ -19,23 +19,24 @@ function changeEyesUp() {
     eye2.classList.remove('move');    
 }
 
-// print a number to the screen
+// print a number to the screen and store it's value
 const para = document.getElementById('para');
-
+let paraValue;
 function printAnswer(value) {
+    changeEyesUp();
     para.textContent += value;
     screen.append(para);
-    let a = para.textContent;
-    let b = Number.parseFloat(a);
-    console.log(b);
-    console.log(typeof b);
+    paraValue =para.textContent;
+    return paraValue;
 }
-// let a = para.textContent;
 
-// clear function
-clear.addEventListener('click' ,() => {
-    para.innerText = " ";  
-})
+// clear function 
+function clearScreen() {
+    para.textContent = "";
+    paraValue = undefined;
+}
+// clear screen on click
+clear.addEventListener('click', clearScreen)
 
 // add,multiply,divide and subtract functions
 function add(...args){
@@ -60,13 +61,13 @@ function divide(...args){
 // let dig2 = Number.parseFloat(prompt());
 const operate = function(a,b) {
     switch(tell) {
-        case 'add':
+        case '+':
             return add(a,b);
-        case 'subtract':
+        case '-':
             return subtract(a,b);
-        case 'divide':
+        case '/':
             return divide(a,b);
-        case 'multiply':
+        case 'x':
             return multiply(a,b);
         default:
             return 'You did not choose what you would like to do'
