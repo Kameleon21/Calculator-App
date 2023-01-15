@@ -32,6 +32,7 @@ function printAnswer(value) {
 // clear function 
 function clearScreen() {
     para.textContent = "";
+    changeEyesUp();
     paraValue1.length = 0;
 }
 
@@ -56,7 +57,7 @@ function checkOperator(value) {
     }
     if(value === 'equal') {
         paraValue1.push(Number.parseFloat(para.textContent));
-        let answer = operate(paraValue1,paraValue1);
+        let answer = operate(...paraValue1);
         para.textContent = answer;
         screen.append(para);
         changeEyesDown();
@@ -84,17 +85,19 @@ function divide(...args){
 }
 
 // calculator logic 
-const operate = function(a,b) {
-    switch(operatorValue) {
-        case '+':
-            return add(a,b);
-        case '-':
-            return subtract(a,b);
-        case '/':
-            return divide(a,b);
-        case 'x':
-            return multiply(a,b);
-        default:
-            return 'You did not choose what you would like to do'
-    }
+const operate = function(...args) {
+    return [...args].reduce((acc,cur) => {
+        switch(operatorValue) {
+            case '+':
+                return add(acc,cur);
+            case '-':
+                return subtract(acc,cur);
+            case '/':
+                return divide(acc,cur);
+            case 'x':
+                return multiply(acc,cur);
+            default:
+                return 'You did not choose what you would like to do'
+        }
+    });
 }
