@@ -7,6 +7,7 @@ const subtractBtn = document.getElementById('subtract');
 const equal = document.getElementById('equal');
 const eye1 = document.getElementById('eye1');
 const eye2 = document.getElementById('eye2');
+let operatorValue;
 
 // Change eyes directions
 function changeEyesDown() {
@@ -21,20 +22,47 @@ function changeEyesUp() {
 
 // print a number to the screen and store it's value
 const para = document.getElementById('para');
-let paraValue;
+let paraValue1=[]
 function printAnswer(value) {
     changeEyesUp();
     para.textContent += value;
     screen.append(para);
-    paraValue =para.textContent;
-    return paraValue;
 }
 
 // clear function 
 function clearScreen() {
     para.textContent = "";
-    paraValue = undefined;
+    paraValue1.length = 0;
 }
+
+// check for which operator has been pressed
+function checkOperator(value) {
+    if(value === 'multiply') {
+        paraValue1.push(Number.parseFloat(para.textContent));
+        para.textContent = "";
+        operatorValue = 'x';
+    } else if(value === 'add') {
+        paraValue1.push(Number.parseFloat(para.textContent));
+        para.textContent = "";
+        operatorValue = '+';
+    } else if(value === 'subtract') {
+        paraValue1.push(Number.parseFloat(para.textContent));
+        para.textContent = "";
+        operatorValue = '-';
+    } else if(value === 'divide') {
+        paraValue1.push(Number.parseFloat(para.textContent));
+        para.textContent = "";
+        operatorValue = '/';
+    }
+    if(value === 'equal') {
+        paraValue1.push(Number.parseFloat(para.textContent));
+        let answer = operate(paraValue1,paraValue1);
+        para.textContent = answer;
+        screen.append(para);
+        changeEyesDown();
+    }
+}
+
 // clear screen on click
 clear.addEventListener('click', clearScreen)
 
@@ -56,11 +84,8 @@ function divide(...args){
 }
 
 // calculator logic 
-// let tell = prompt("What would you like to do add/subtract/divide or multiply");
-// let dig1 = Number.parseFloat(prompt());
-// let dig2 = Number.parseFloat(prompt());
 const operate = function(a,b) {
-    switch(tell) {
+    switch(operatorValue) {
         case '+':
             return add(a,b);
         case '-':
