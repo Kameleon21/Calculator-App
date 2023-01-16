@@ -1,12 +1,9 @@
 const screen = document.getElementById('screen');
 const clear =document.getElementById('Clear');
-const multiplyBtn =document.getElementById('multiply');
-const divideBtn = document.getElementById('divide');
-const addBtn = document.getElementById('add');
-const subtractBtn = document.getElementById('subtract');
 const equal = document.getElementById('equal');
 const eye1 = document.getElementById('eye1');
 const eye2 = document.getElementById('eye2');
+let operations=[];
 let operatorValue;
 
 // Change eyes directions
@@ -22,7 +19,7 @@ function changeEyesUp() {
 
 // print a number to the screen and store it's value
 const para = document.getElementById('para');
-let paraValue1=[]
+let variableHolder=[];
 function printAnswer(value) {
     changeEyesUp();
     para.textContent += value;
@@ -33,34 +30,92 @@ function printAnswer(value) {
 function clearScreen() {
     para.textContent = "";
     changeEyesUp();
-    paraValue1.length = 0;
+    variableHolder.length = 0;
+    operations.length =0;
 }
 
 // check for which operator has been pressed
 function checkOperator(value) {
     if(value === 'multiply') {
-        paraValue1.push(Number.parseFloat(para.textContent));
+        variableHolder.push(Number.parseFloat(para.textContent));
         para.textContent = "";
-        operatorValue = 'x';
+        operations.push("multiply");
+        // operations = 'multiply';
+        return operations;
     } else if(value === 'add') {
-        paraValue1.push(Number.parseFloat(para.textContent));
+        variableHolder.push(Number.parseFloat(para.textContent));
         para.textContent = "";
-        operatorValue = '+';
+        operations.push("add");
+        // operations = 'add';
+        return operations;
     } else if(value === 'subtract') {
-        paraValue1.push(Number.parseFloat(para.textContent));
+        variableHolder.push(Number.parseFloat(para.textContent));
         para.textContent = "";
-        operatorValue = '-';
+        operations.push("subtract");
+        // operations = 'subtract';
+        return operations;
     } else if(value === 'divide') {
-        paraValue1.push(Number.parseFloat(para.textContent));
+        variableHolder.push(Number.parseFloat(para.textContent));
         para.textContent = "";
-        operatorValue = '/';
+        operations.push("divide");
+        // operations = 'divide';
+        return operations;
     }
     if(value === 'equal') {
-        paraValue1.push(Number.parseFloat(para.textContent));
-        let answer = operate(...paraValue1);
-        para.textContent = answer;
-        screen.append(para);
+        variableHolder.push(Number.parseFloat(para.textContent));
+        if(variableHolder.length == 3) {
+            orderOfOperation1();
+        } else if(variableHolder.length >=4) {
+            orderOfOperation1();
+            orderOfOperation2();
+        }
+        let answer = operate(...operations,...variableHolder);
+        // rounds off to two decimal places
+        let roundedAnswer = answer.toFixed(2);
+        if(answer % 1 === 0) {
+            para.textContent = answer;
+            screen.append(para);
+        } else if (answer % 1 !== 0) {
+            para.textContent = roundedAnswer;
+            screen.append(para);
+        }
         changeEyesDown();
+    }
+}
+
+// determine the length of the variableHolder array to set order of operations 
+// first operation
+let sum;
+function orderOfOperation1() {
+    if(variableHolder.length >=2) {
+        for(let i = variableHolder.length;i>0;i--) {
+            operations[0];
+            let ans1 = variableHolder[0];
+            let ans2 = variableHolder[1];
+            sum = operate(operations[0],ans1,ans2)
+            variableHolder.shift();
+            variableHolder.shift();
+            variableHolder.unshift(sum);
+            operations.shift();
+            return sum;
+        }
+    }
+}
+
+// second operation
+function orderOfOperation2() {
+    if(variableHolder.length >=2) {
+        for(let i = variableHolder.length;i>0;i--) {
+            operations[0];
+            let ans1 = variableHolder[0];
+            let ans2 = variableHolder[1];
+            sum = operate(operations[0],ans1,ans2)
+            variableHolder.shift();
+            variableHolder.shift();
+            variableHolder.unshift(sum);
+            operations.shift();
+            return sum;
+        }
     }
 }
 
@@ -85,16 +140,16 @@ function divide(...args){
 }
 
 // calculator logic 
-const operate = function(...args) {
+const operate = function(operations,...args) {
     return [...args].reduce((acc,cur) => {
-        switch(operatorValue) {
-            case '+':
+        switch(operations) {
+            case 'add':
                 return add(acc,cur);
-            case '-':
+            case 'subtract':
                 return subtract(acc,cur);
-            case '/':
+            case 'divide':
                 return divide(acc,cur);
-            case 'x':
+            case 'multiply':
                 return multiply(acc,cur);
             default:
                 return 'You did not choose what you would like to do'
