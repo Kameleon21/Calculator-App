@@ -40,25 +40,21 @@ function checkOperator(value) {
         variableHolder.push(Number.parseFloat(para.textContent));
         para.textContent = "";
         operations.push("multiply");
-        // operations = 'multiply';
         return operations;
     } else if(value === 'add') {
         variableHolder.push(Number.parseFloat(para.textContent));
         para.textContent = "";
         operations.push("add");
-        // operations = 'add';
         return operations;
     } else if(value === 'subtract') {
         variableHolder.push(Number.parseFloat(para.textContent));
         para.textContent = "";
         operations.push("subtract");
-        // operations = 'subtract';
         return operations;
     } else if(value === 'divide') {
         variableHolder.push(Number.parseFloat(para.textContent));
         para.textContent = "";
         operations.push("divide");
-        // operations = 'divide';
         return operations;
     }
     if(value === 'equal') {
@@ -69,19 +65,35 @@ function checkOperator(value) {
             orderOfOperation1();
             orderOfOperation2();
         }
-        let answer = operate(...operations,...variableHolder);
-        // rounds off to two decimal places
-        let roundedAnswer = answer.toFixed(2);
-        if(answer % 1 === 0) {
-            para.textContent = answer;
-            screen.append(para);
-        } else if (answer % 1 !== 0) {
-            para.textContent = roundedAnswer;
-            screen.append(para);
+        if(operations[0] === 'divide') {
+            zeroError();
+        } else {
+             let answer = operate(...operations,...variableHolder);
+            // rounds off to two decimal places
+            let roundedAnswer = answer.toFixed(2);
+            if(answer % 1 === 0) {
+                para.textContent = answer;
+                screen.append(para);
+            } else if (answer % 1 !== 0) {
+                para.textContent = roundedAnswer;
+                screen.append(para);
+            }
+            changeEyesDown();
+            variableHolder.length = 0;
+            operations.length = 0;
         }
-        changeEyesDown();
     }
 }
+
+// displays an error message if users tries to divide by 0
+function zeroError() {
+    if(variableHolder[0] === 0 || variableHolder[1] === 0 ) {
+        para.textContent = 'Not Happening!';
+        screen.append(para);
+    }
+}
+
+
 
 // determine the length of the variableHolder array to set order of operations 
 // first operation
@@ -116,6 +128,23 @@ function orderOfOperation2() {
             operations.shift();
             return sum;
         }
+    }
+}
+
+// delete number
+function delNum(value) {
+    if(value === 'delete') {
+        para.textContent = para.innerText.slice(0,-1);
+        screen.append(para);
+    }
+}
+
+// decimal point
+function decimalDot(value) {
+    if(value === 'dot') {
+        if(!(para.textContent.includes(".")))
+            para.textContent += ".";
+            screen.append(para);
     }
 }
 
