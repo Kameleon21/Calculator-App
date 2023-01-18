@@ -13,6 +13,7 @@ body{
     width: 100vw;
     height: 100vh;
     display: flex;
+    align-items: center;
 }
 
 
@@ -113,22 +114,23 @@ body{
 
 /* bottom half of the calculator */
 .bottom {
-    margin: auto 0 2.5em;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(4,1fr);
-    row-gap: 4px;
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+   column-gap: 1.4em;
+   row-gap: 2px;
 }
 
 .btn {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 button {
     padding: 7px;
-    border-radius: 10px;
+    border-radius: 2px;
     color: #fff;
     border-color: rgb(180, 0, 0);
     background-color: rgb(180, 0, 0);
 }
+
