@@ -4,7 +4,6 @@ const equal = document.getElementById('equal');
 const eye1 = document.getElementById('eye1');
 const eye2 = document.getElementById('eye2');
 let operations=[];
-let operatorValue;
 
 // Change eyes directions
 function changeEyesDown() {
@@ -65,7 +64,7 @@ function checkOperator(value) {
             orderOfOperation1();
             orderOfOperation2();
         }
-        if(operations[0] === 'divide') {
+        if(operations[0] === 'divide' && variableHolder[1] === 0) {
             zeroError();
         } else {
              let answer = operate(...operations,...variableHolder);
