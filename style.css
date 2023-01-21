@@ -4,12 +4,12 @@
 }
 
 body{
-    background-color: midnightblue;
     box-sizing: border-box;
 }
 
 /* container spanning over the whole page */
 #container { 
+    background: linear-gradient(120deg,red,blue);
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -131,6 +131,6 @@ button {
     border-radius: 2px;
     color: #fff;
     border-color: rgb(180, 0, 0);
-    background-color: rgb(180, 0, 0);
+    background: linear-gradient(90deg,red,coral);
 }
 
